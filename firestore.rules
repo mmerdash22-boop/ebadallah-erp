@@ -1,0 +1,11 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // إعداد مبسّط يسمح بالقراءة والكتابة لأي شخص معه لينك النظام + بيانات الدخول.
+    // مناسب لتطبيق داخلي صغير بمستخدمين موثوقين.
+    // لحماية أقوى مستقبلاً، استبدل هذا بسياسات تعتمد على Firebase Authentication.
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
